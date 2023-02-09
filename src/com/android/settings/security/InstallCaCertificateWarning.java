@@ -16,8 +16,6 @@
 
 package com.android.settings.security;
 
-import static android.view.WindowManager.LayoutParams.SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS;
-
 import android.annotation.Nullable;
 import android.app.Activity;
 import android.content.Intent;
@@ -43,8 +41,6 @@ public class InstallCaCertificateWarning extends Activity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.ca_certificate_warning_dialog);
-        getWindow().addSystemFlags(SYSTEM_FLAG_HIDE_NON_SYSTEM_OVERLAY_WINDOWS);
-
         final GlifLayout layout = findViewById(R.id.setup_wizard_layout);
 
         final FooterBarMixin mixin = layout.getMixin(FooterBarMixin.class);
@@ -56,7 +52,6 @@ public class InstallCaCertificateWarning extends Activity {
                         .setTheme(R.style.SudGlifButton_Secondary)
                         .build()
         );
-        mixin.getSecondaryButtonView().setFilterTouchesWhenObscured(true);
 
         mixin.setPrimaryButton(
                 new FooterButton.Builder(this)
@@ -66,7 +61,6 @@ public class InstallCaCertificateWarning extends Activity {
                         .setTheme(R.style.SudGlifButton_Primary)
                         .build()
         );
-        mixin.getPrimaryButtonView().setFilterTouchesWhenObscured(true);
     }
 
     private View.OnClickListener installCaCertificate() {

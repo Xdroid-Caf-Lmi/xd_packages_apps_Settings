@@ -84,12 +84,9 @@ public class PrivateDnsPreferenceController extends BasePreferenceController
 
     @Override
     public int getAvailabilityStatus() {
-        if (!mContext.getResources().getBoolean(R.bool.config_show_private_dns_settings)) {
-            return UNSUPPORTED_ON_DEVICE;
-        }
-        final UserManager userManager = mContext.getSystemService(UserManager.class);
-        if (userManager.isGuestUser()) return DISABLED_FOR_USER;
-        return AVAILABLE;
+        return mContext.getResources().getBoolean(R.bool.config_show_private_dns_settings)
+                ? AVAILABLE
+                : UNSUPPORTED_ON_DEVICE;
     }
 
     @Override
